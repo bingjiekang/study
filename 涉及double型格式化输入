@@ -1,0 +1,11 @@
+#include<stdio.h>
+int main(){
+	double s=0,n=0,k;
+	scanf("%lf",&k);//lf 是double的格式化输入输出对应符号 
+
+	while(s<=k){
+		n=n+1;
+		s=s+1/n;
+	}
+	printf("%.0f",n);//( 多少占位）.(小数点后保留几位) 
+}
