@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int maxn=1e3;
+int main(){
+	int n,a[maxn],i;
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+		a[i]=i;
+	do{
+		for(i=1;i<=n;i++)
+			printf("%d",a[i]);
+		printf("\n");
+	}while(next_permutation(a+1,a+1+n));
+} 
