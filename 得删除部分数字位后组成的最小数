@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>//万能头文件 
+using namespace std;
+
+struct xh{//结构体 
+	int num;
+};
+
+bool comparison(xh a,xh b){//用来sort函数里对结构体内数据进行排序
+    return a.num<b.num;
+}
+
+int find(char *vb,int s,int n){//查找 vb 数组里从 n号位开始第一个出现 s 的下标 
+	for(int i=n;i<strlen(vb);i++){
+		if(vb[i]-'0'==s){
+			return i;//成功找到返回下标 
+		}
+	}
+	return -1;//未找到返回-1 
+}
+
+int main(){
+
+	xh t[100];
+	int n,s,m;
+	char sz[100];
+	//int a[100];
+	cout<<"n=";cin>>n;
+	cout<<"s=";cin>>s;
+	m=n-s;
+	//int w=m;
+	cin>>sz;
+	clock_t state = clock();//用来测试运行时间 state记录开始 
+	if(n!=strlen(sz)) {
+		cout<<"输入不符合规范"<<endl; 
+	}
+	else{
+		
+		for(int i=0;i<n;i++){
+			t[i].num = sz[i]-'0';
+		}	
+		int e=0,y=0;
+		while(m>0){
+			sort(t+e,t+n-m+1,comparison);//对知道范围内序列进行升序排列
+			y=y*10+t[e].num;
+			e=find(sz,t[e].num,e)+1;//找到某数的下标 并返回下标 
+			for(int i=0;i<n;i++){
+				t[i].num = sz[i]-'0';
+			}
+			m--;
+		}
+		cout<<y<<endl;
+		clock_t ends=clock(); //记录程序运行的结束时间 ends 
+		//cout<<"运行时间:" <<ends-state<<endl;
+		cout<<"运行时间:"<<(double)(ends - state)/ CLOCKS_PER_SEC<<"秒";//(ends-state)/ CLOCKS_PER_SEC为运行秒速 
+		return 0; 
+	}
+}
